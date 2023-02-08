@@ -55,22 +55,10 @@ public class aud4zad1 {
 //            list.add(i, String.valueOf(builder.reverse()));
 //        }
 //        System.out.println(list);
-        DateFormat df = new SimpleDateFormat("yyyy");
-        DateFormat d = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-        Date date1=df.parse(String.valueOf(2001));
-        Date date2=d.parse("13.12."+String.valueOf(2001)+" 23:59");
-        System.out.println(date1);
-        System.out.println(date2);
-        Map<Integer,Integer> map=new HashMap<>();
-        map.put(1,2);
-        map.put(2,3);
-        map.put(3,4);
-        map.put(4,5);
-        map.put(5,6);
-        map.put(6,7);
-        if(map.get(2).equals(3)){
-            System.out.println("TAMAN E");
-        }
+        int time=764;
+        String t=String.valueOf(time/60+":"+time%60);
+        System.out.println(t);
+
     }
 
     public static List<Integer> lowerThen(Integer element) {

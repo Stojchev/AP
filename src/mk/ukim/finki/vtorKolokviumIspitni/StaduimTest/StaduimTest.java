@@ -13,7 +13,6 @@ class SeatNotAllowedException extends Exception {
         super("SeatTakenException");
     }
 }
-
 class Stadium {
     private String name;
     private Set<Sector> sectors;
