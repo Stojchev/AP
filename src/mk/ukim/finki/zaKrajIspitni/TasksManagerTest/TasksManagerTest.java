@@ -70,6 +70,20 @@ class Task implements ITask {
     }
 }
 
+
+abstract class TaskDecorator implements ITask {
+    ITask iTaskWrapper;
+
+    public TaskDecorator(ITask iTaskWrapper) {
+        this.iTaskWrapper = iTaskWrapper;
+    }
+
+    @Override
+    public String toString() {
+        return iTaskWrapper.toString();
+    }
+}
+
 class PriorityDecorator extends TaskDecorator {
     int priority;
 
@@ -106,19 +120,6 @@ class PriorityDecorator extends TaskDecorator {
     @Override
     public String toString() {
         return iTaskWrapper.toString().replace("}", "") + ", priority=" + getPriority() + "}";
-    }
-}
-
-abstract class TaskDecorator implements ITask {
-    ITask iTaskWrapper;
-
-    public TaskDecorator(ITask iTaskWrapper) {
-        this.iTaskWrapper = iTaskWrapper;
-    }
-
-    @Override
-    public String toString() {
-        return iTaskWrapper.toString();
     }
 }
 

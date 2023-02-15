@@ -1,11 +1,13 @@
 package mk.ukim.finki.aud1;
 
-import java.text.DateFormat;
+import java.sql.Time;
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -15,6 +17,7 @@ public class aud4zad1 {
     static int SEARCHER = 1000;
     static Random RANDOM = new Random();
     static int ARRAY[] = new int[SIZE];
+
     public static void main(String[] args) throws ParseException {
 //        // samo zameni gi vrednostite za xi
 //        float[] list ={(float) 21.96,
@@ -64,41 +67,20 @@ public class aud4zad1 {
 //        int time=764;
 //        String t=String.valueOf(time/60+":"+time%60);
 //        System.out.println(t);
-        for (int i = 0; i < SIZE; i++) {
-            ARRAY[i] = RANDOM.nextInt(1000000);
-        }
+//        LocalDateTime localDate=LocalDateTime.parse("2020-06-23T23:59:59.000");
+//        System.out.println(localDate);
+//        for (int i = 1; i <= 10; i++) {
+//            System.out.printf("H-%s %f%n","level" + i, 11 + i * 2.2);
+//            System.out.printf("F-%s %f%n","level" + i, 5.5 + i * 2.5);
+//        }
 
-        LocalDateTime startTime = LocalDateTime.now();
-        int max = Arrays.stream(ARRAY).max().getAsInt();
-        LocalDateTime endTime = LocalDateTime.now();
-        System.out.printf("Finding maximum with linear search: %d\n", Duration.between(startTime,endTime).toMillis());
-
-        startTime = LocalDateTime.now();
-        List<Searcher> searchers = new ArrayList<>();
-        int step = SIZE / SEARCHER;
-        for (int start = 0; start < SIZE; start += step) {
-            int end = start+step;
-            searchers.add(new Searcher(start, end));
-        }
-
-        searchers.forEach(Searcher::start);
-        for (Searcher searcher : searchers) {
-            try {
-                searcher.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        System.out.println(searchers.stream()
-                .mapToInt(Searcher::getMax)
-                .max()
-                .getAsInt()
-        );
-        endTime = LocalDateTime.now();
-
-        System.out.printf("Finding max with threads took %d", Duration.between(startTime, endTime).toMillis());
-
+        //LocalTime localTime=LocalTime.parse("00:00:43,700",DateTimeFormatter.ofPattern("HH:mm:ss,SSS"));
+        String number = "078238461";
+        //System.out.println(number.;
+        Map<String, Integer> asd = new TreeMap<>();
+        asd.put("asd",1);
+        asd.put("asd",Integer.parseInt(String.valueOf(asd.get("asd")+1)));
+        System.out.println(asd);
     }
 
     public static List<Integer> lowerThen(Integer element) {
@@ -133,6 +115,7 @@ public class aud4zad1 {
         return elements.stream().mapToDouble(i -> i).summaryStatistics().getAverage();
     }
 }
+
 class Searcher extends Thread {
     int start;
     int end;
